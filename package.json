@@ -1,0 +1,42 @@
+{
+  "name": "minelev-notifications",
+  "version": "1.0.0",
+  "description": "Azure Function for Notifications in MinElev",
+  "scripts": {
+    "start": "func start",
+    "test": "standard && jest",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
+    "deploy:prod": "func azure functionapp publish prod-func-minelev-notifications-v1"
+  },
+  "author": {
+    "name": "Rune Moskvil Lyngås",
+    "email": "rune.moskvil.lyngaas@vtfk.no",
+    "url": "https://github.com/runely"
+  },
+  "keywords": [
+    "microservice",
+    "MinElev",
+    "Notifications",
+    "Vestfold og Telemark fylkeskommune"
+  ],
+  "dependencies": {
+    "@vtfk/logger": "2.5.2",
+    "axios": "0.21.1",
+    "jsonwebtoken": "8.5.1"
+  },
+  "devDependencies": {
+    "jest": "27.0.6",
+    "standard": "16.0.3"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/**/*test.[jt]s?(x)",
+      "**/?(*.)+.(spec|test).[jt]s?(x)"
+    ]
+  }
+}
