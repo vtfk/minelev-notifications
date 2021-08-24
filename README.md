@@ -15,7 +15,7 @@ All API calls needs an Authorization header with valid jwt
 POST a generated warning from MinElev.
 This service will notify contact teachers if one of their students has received a warning.
 
-*See example data in test/data/warning.json*
+*See example data in [tests/data/warning.json](https://github.com/vtfk/minelev-notifications/blob/main/tests/data/warning.json)*
 
 Returns
 
@@ -32,7 +32,7 @@ Returns
 POST a generated yff notification from MinElev-saksbehandler-robot.
 This service will send emails to the persons specified in the "copy to" field.
 
-*See example data in test/data/yff.json*
+*See example data in [tests/data/yff.json](https://github.com/vtfk/minelev-notifications/blob/main/tests/data/yff.json)*
 
 Returns
 
