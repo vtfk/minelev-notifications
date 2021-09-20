@@ -37,14 +37,8 @@ const generateEmail = data => {
 module.exports = async data => {
   const { userId, studentUserName } = data
   const mail = generateEmail(data)
-
-  try {
-    logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'start'])
-    const log = await sendMail(mail)
-    logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'finish'])
-    return { success: true, log }
-  } catch (error) {
-    logger('error', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, error])
-    throw error
-  }
+  logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'start'])
+  const log = await sendMail(mail)
+  logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'finish'])
+  return { success: true, log }
 }

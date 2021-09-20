@@ -39,15 +39,10 @@ module.exports = async data => {
   if (teachers.length > 0) {
     logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'teachers', teachers.length])
     const mails = teachers.map(teacher => generateEmail(data, teacher))
-    try {
-      const jobs = mails.map(sendMail)
-      const logs = await Promise.all(jobs)
-      logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'finish'])
-      return { success: true, notifications: logs.length, logs }
-    } catch (error) {
-      logger('error', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, error])
-      throw error
-    }
+    const jobs = mails.map(sendMail)
+    const logs = await Promise.all(jobs)
+    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'finish'])
+    return { success: true, notifications: logs.length, logs }
   } else {
     logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'no one to notify'])
     return { succes: true, notifications: 0 }

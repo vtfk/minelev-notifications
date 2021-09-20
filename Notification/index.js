@@ -17,7 +17,7 @@ const handleNotification = async (context, req) => {
     logger('info', ['notification', 'finish'])
     return getResponse(result)
   } catch (error) {
-    logger('error', ['notification', error])
+    logger('error', ['notification', 'error', error])
     if (error instanceof HTTPError) return error.toJSON()
     return new HTTPError(500, error).toJSON()
   }
