@@ -37,7 +37,7 @@ module.exports = async data => {
   const teachers = payload.filter(teacher => teacher.username !== userId)
 
   if (teachers.length > 0) {
-    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'teachers', teachers.length])
+    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'teachers', teachers.map(teacher => teacher.email).join(','), 'start'])
     const mails = teachers.map(teacher => generateEmail(data, teacher))
     const jobs = mails.map(sendMail)
     const logs = await Promise.all(jobs)

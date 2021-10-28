@@ -37,7 +37,7 @@ const generateEmail = data => {
 module.exports = async data => {
   const { userId, studentUserName } = data
   const mail = generateEmail(data)
-  logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'start'])
+  logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'recipients', [...data.recipients].join(',')], 'start')
   const log = await sendMail(mail)
   logger('info', ['handler', 'action', 'sendmail', 'userId', userId, 'studentUserName', studentUserName, 'finish'])
   return { success: true, log }
