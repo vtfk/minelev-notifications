@@ -7,7 +7,7 @@ const handleNotification = async (context, req) => {
   const { type, ...body } = req.body
 
   logConfig({
-    prefix: type
+    prefix: `${body.id} - ${type}`
   })
 
   logger('info', ['notification', 'start'])
