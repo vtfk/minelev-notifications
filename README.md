@@ -60,9 +60,9 @@ Add a local `local.settings.json` file
     "MAIL_SERVICE_URL": "mail-service-url",
     "MAIL_SERVICE_JWT": "mail-jwt-secret IF subscriptionkey used, remove this",
     "MAIL_TEMPLATE_NAME": "mail-service-template-name",
-    "PAPERTRAIL_HOSTNAME": "minelev",
     "PAPERTRAIL_HOST": "logs.papertrails.com",
-    "PAPERTRAIL_PORT": 12345
+    "PAPERTRAIL_TOKEN": "3245yrtfgvc",
+    "NODE_ENV": "production"
   }
 }
 ```
