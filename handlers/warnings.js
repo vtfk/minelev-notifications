@@ -34,14 +34,18 @@ module.exports = async data => {
   const { userId, studentUserName } = data
   const results = await getPifuData(userId, studentUserName)
   const payload = Array.isArray(results) ? results : []
-  const teachers = payload.filter(teacher => teacher.username !== userId)
+  const teachers = payload.filter(teacher => teacher.username !== userId && teacher.email)
+  const invalidTeachers = payload.filter(teacher => teacher.username !== userId && !teacher.email)
 
   if (teachers.length > 0) {
-    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'teachers', teachers.map(teacher => teacher.email).join(','), 'start'])
+    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'teachers', teachers.map(teacher => teacher.username).join(','), 'start'])
+    if (invalidTeachers.length > 0) {
+      logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'invalid teachers', invalidTeachers.map(teacher => teacher.username).join(',')])
+    }
     const mails = teachers.map(teacher => generateEmail(data, teacher))
     const jobs = mails.map(sendMail)
     const logs = await Promise.all(jobs)
-    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'finish'])
+    logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, logs.length, 'finish'])
     return { success: true, notifications: logs.length, logs }
   } else {
     logger('info', ['handler', 'action', 'notifyContactTeachers', 'userId', userId, 'studentUserName', studentUserName, 'no one to notify'])
