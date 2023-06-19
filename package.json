@@ -20,7 +20,7 @@
     "Vestfold og Telemark fylkeskommune"
   ],
   "dependencies": {
-    "@vtfk/logger": "4.0.1",
+    "@vtfk/logger": "4.3.2",
     "axios": "0.24.0",
     "jsonwebtoken": "8.5.1"
   },
